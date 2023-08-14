@@ -15,6 +15,6 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Write the rpn algorithm in C++ [x]
 - Write tests to make sure things are running smoothly [x]
 - Organize rpn code to be more readable [x]
-- Bind the C++ code to python [ ]
+- Bind the C++ code to python [x]
 - Create a GUI [ ]
 - Add functionality to the GUI [ ]
