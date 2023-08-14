@@ -3,9 +3,10 @@
 #include <stack>
 #include <algorithm>
 #include <iostream>
+#include <math.h>
 
 bool rpn::isNumber(const char input) {
-	return input >= 48 && input <= 57;
+	return (input >= 48 && input <= 57) || input =='.';
 }
 
 bool rpn::isOperator(const char value) {
@@ -69,7 +70,7 @@ std::string rpn::convertToRPN(const std::string& str)
 			while (s.size() > 0 && isOperator(s.top()[0]) &&
 				operatorOrder.at(std::string(&input[i], 1)) <= operatorOrder.at(s.top())) {
 
-			//pop o2 off the stack and add it to the output queue and do again 1)
+				//pop o2 off the stack and add it to the output queue and do again 1)
 				result.append(s.top());
 				result.append(" ");
 				s.pop();
@@ -106,6 +107,7 @@ std::string rpn::convertToRPN(const std::string& str)
 }
 
 double rpn::calculateRPN(const std::string& str) {
+	std::cout << "Calculating..." << std::endl;
 	std::string input(str);
 	double result = 0.0;
 	std::replace(input.begin(), input.end(), 'x', '*'); //some people may like to use x instead of * to multiply

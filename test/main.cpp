@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 
-#include "rpn.h"
+#include "../src/c++/rpn.h"
 
 using namespace rpn;
 
@@ -32,10 +32,10 @@ bool rpnTest(const std::string& equationInfix, double expectedResult) {
 }
 int main() {
 
-	rpnTest("3 + 2 * 5",13.0);
-	rpnTest("2 * (5 + 2)",14.0);
-	rpnTest("(7 + 3) * (5 - 2) ^ 2",90.0);
-	rpnTest("4 / (3 - 1) ^ (2 * 3) ",0.0625);
-	rpnTest("( ( 5 - 2 ) ^ ( 3 + 1 ) / ( 2 + 1 ) + 12 ) * 21",819.0);
+	rpnTest("3 + 2 * 5", 13.0);
+	rpnTest("2 * (5 + 2)", 14.0);
+	rpnTest("(7 + 3) * (5 - 2) ^ 2", 90.0);
+	rpnTest("4 / (3 - 1) ^ (2 * 3) ", 0.0625);
+	rpnTest("( ( 5 - 2 ) ^ ( 3 + 1 ) / ( 2 + 1 ) + 12 ) * 21.0", 819.0);
 	return 0;
 }
