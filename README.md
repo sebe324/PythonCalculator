@@ -12,6 +12,8 @@ The algorithm is written in C++, but the GUI is made in PySimpleGui
 
 ## To do list
 - Write the rpn algorithm in C++ [x]
+- Write tests to make sure things are running smoothly [x]
+- Organize rpn code to be more readable [x]
 - Bind the C++ code to python []
 - Create a GUI []
 - Add functionality to the GUI []
