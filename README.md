@@ -3,7 +3,7 @@ A calculator made in python.
 
 This application uses the Reverse Polish Notation for calculations.
 
-The algorithm is written in C++, but the GUI is made in PySimpleGui
+The algorithm is written in C++, but the user interface is made in PySimpleGui.
 ## Preview
   Not avaible yet.
 
@@ -14,6 +14,6 @@ The algorithm is written in C++, but the GUI is made in PySimpleGui
 - Write the rpn algorithm in C++ [x]
 - Write tests to make sure things are running smoothly [x]
 - Organize rpn code to be more readable [x]
-- Bind the C++ code to python []
-- Create a GUI []
-- Add functionality to the GUI []
+- Bind the C++ code to python [ ]
+- Create a GUI [ ]
+- Add functionality to the GUI [ ]
