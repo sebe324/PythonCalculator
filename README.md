@@ -8,7 +8,8 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
   Not avaible yet.
 
 ## Tests
-![obraz](https://github.com/sebe324/PythonCalculator/assets/58781463/ce5ce9c0-082a-4f9f-86a3-8fcc9bd3ee49)
+![obraz](https://github.com/sebe324/PythonCalculator/assets/58781463/85233672-9c18-4596-a377-9b123538b6a1)
+
 
 ## To do list
 - Write the rpn algorithm in C++ [x]
