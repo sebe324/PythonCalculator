@@ -19,3 +19,4 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Bind the C++ code to python [x]
 - Create a GUI [x]
 - Add functionality to the GUI [x]
+- Fix all the bugs [ ]
