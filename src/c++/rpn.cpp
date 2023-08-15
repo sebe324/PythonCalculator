@@ -1,4 +1,4 @@
-include "rpn.h"
+#include "rpn.h"
 
 #include <stack>
 #include <algorithm>
@@ -58,7 +58,12 @@ std::string rpn::convertToRPN(const std::string& str)
 			input.insert(i, "(");
 			i += 2;
 			inputSize += 2;
-			for (unsigned j = i + 1; j < inputSize; j++) {
+			for (unsigned j = i + 1; j <= inputSize; j++) {
+				if (j == inputSize) {
+					input.insert(j, ")");
+					inputSize++;
+					break;
+				}
 				if (!isNumber(input[j])) {
 					input.insert(j, ")");
 					inputSize++;
