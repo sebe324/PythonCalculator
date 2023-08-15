@@ -5,7 +5,8 @@ This application uses the Reverse Polish Notation for calculations.
 
 The algorithm is written in C++, but the user interface is made in PySimpleGui.
 ## Preview
-  Not avaible yet.
+
+![2023-08-14 16-59-44](https://github.com/sebe324/sebe324/assets/58781463/9d1029f9-e40a-4e5a-810c-461375c3ad34)
 
 ## Tests
 ![obraz](https://github.com/sebe324/PythonCalculator/assets/58781463/85233672-9c18-4596-a377-9b123538b6a1)
@@ -16,10 +17,5 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Write tests to make sure things are running smoothly [x]
 - Organize rpn code to be more readable [x]
 - Bind the C++ code to python [x]
-<<<<<<< HEAD
 - Create a GUI [x]
 - Add functionality to the GUI [x]
-=======
-- Create a GUI [ ]
-- Add functionality to the GUI [ ]
->>>>>>> 9813172977362b29ff20418a5c87b205772d15f5
