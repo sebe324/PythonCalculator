@@ -20,3 +20,5 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Create a GUI [x]
 - Add functionality to the GUI [x]
 - Fix all the bugs [ ]
+- Add documentation [ ]
+- Light and dark mode [ ]
