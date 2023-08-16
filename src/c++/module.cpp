@@ -3,16 +3,15 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(MyMathLibrary, m) {
-    m.def("convertToRPN", &rpn::convertToRPN, R"pbdoc(
-        Convert an infix equation to a reverse polish notation.
-    )pbdoc");
-    m.def("calculateRPN", &rpn::calculateRPN, R"pbdoc(
-        Calculate a revelse polish notation equation.
-    )pbdoc");
+PYBIND11_MODULE(huj, m)
+{
+	m.doc() = "pybind11module";
+	m.def("convertToRPN", &rpn::convertToRPN, "Convert an infix equation to a reverse polish notation");
+	m.def("calculateRPN", &rpn::calculateRPN, "Calculate an equation written in reverse polish notation");
+
 #ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
+	m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+	m.attr("__version__") = "dev";
 #endif
 }

@@ -1,9 +1,9 @@
 import MyMathLibrary as mml
 import PySimpleGUI as sg
+import sys 
+test = mml.convertToRPN("-3+2")
 
-test = mml.convertToRPN("5+10*(12+3)")
-
-print(mml.calculateRPN(test))
+#print(mml.calculateRPN(test))
 
 sg.set_options(font=('Franklin Gothic Book', 24))
 bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
@@ -71,8 +71,9 @@ while True:
     elif event == ")":
         equation+=")"
     elif event == "=":
+        if(equation==""): equation="0"
         convertedEquation=mml.convertToRPN(equation)
         equation=str(mml.calculateRPN(convertedEquation))
     window['output'].update(equation)
 window.close()
-quit()
+sys.exit()
