@@ -11,7 +11,26 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 ## Tests
 ![obraz](https://github.com/sebe324/PythonCalculator/assets/58781463/85233672-9c18-4596-a377-9b123538b6a1)
 
+## Contributing
+  - If anyone wants to contribute feel free to do so. Just send a pull request and I will review it.
+  - You can check out the issues or the to-do list at the bottom of this readme.
+## How to build
 
+### 1. Just building the python code
+
+- Install python
+- Install PySimpleGUI
+  ```pip install PySimpleGUI```
+- Make sure that the .pyd file and the .py file are in the same folder
+- Just do this line in the same directory as the files.
+  ```python CalculatorUI.py```
+- It should work.
+
+
+### 2. Building the c++ code and using pybind11
+  - This process is quite complicated and I myself had a lot of problems with using pybind.
+  - I'm going to leave this [guide](https://learn.microsoft.com/en-us/visualstudio/python/working-with-c-cpp-python-in-visual-studio?view=vs-2022). It does a
+    much better job explaining this than I could.
 ## To do list
 - Write the rpn algorithm in C++ [x]
 - Write tests to make sure things are running smoothly [x]
@@ -22,3 +41,4 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Fix all the bugs [ ]
 - Add documentation [ ]
 - Light and dark mode [ ]
+- Window confirming if the user wants to exit the calculator [ ]
