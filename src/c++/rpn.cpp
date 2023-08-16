@@ -53,7 +53,8 @@ std::string rpn::convertToRPN(const std::string& str)
 	//example 1: 3*-(3+3)=3*(0-(3+3))
 
 	for (unsigned i = 0; i < inputSize; i++) {
-		if (input[i] == '-' && inputSize - 1 > i && isNumber(input[i + 1])) {
+		if (input[i] == '-' && inputSize - 1 > i && isNumber(input[i + 1])
+			&& (i == 0 || (i > 0 && isOperator(input[i - 1])))) {
 			input.insert(i, "0");
 			input.insert(i, "(");
 			i += 2;
@@ -72,7 +73,8 @@ std::string rpn::convertToRPN(const std::string& str)
 				}
 			}
 		}
-		else if (input[i] == '-' && inputSize - 1 > i && input[i + 1] == '('){
+		else if (input[i] == '-' && inputSize - 1 > i && input[i + 1] == '('
+			&& (i == 0 || (i > 0 && isOperator(input[i - 1])))) {
 			input.insert(i, "0");
 			input.insert(i, "(");
 			i += 2;
@@ -114,9 +116,9 @@ std::string rpn::convertToRPN(const std::string& str)
 
 		//If the symbol is an operator
 		else if (isOperator(input[i])) {
-			
+
 			//check if the - sign is followed by a number n. If it is, change it to 0-n.
-			
+
 			//1) as long as there is an operator at the top of the stack, o2 such that:
 
 			//o1 is left associative and its order of execution is less than or equal to the order of o2,
