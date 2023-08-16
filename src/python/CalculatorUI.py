@@ -21,7 +21,7 @@ layout=[
     ]
 
 
-window=sg.Window("Calculator",layout,background_color='#909090')
+window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090')
 equation=""
 while True:
     event, values = window.read()
