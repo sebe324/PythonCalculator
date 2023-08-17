@@ -4,7 +4,7 @@ A calculator made in python.
 This application uses the Reverse Polish Notation for calculations.
 
 The algorithm is written in C++, but the user interface is made in PySimpleGui.
-## Preview
+## Calculator in action
 
 ![2023-08-14 16-59-44](https://github.com/sebe324/sebe324/assets/58781463/9d1029f9-e40a-4e5a-810c-461375c3ad34)
 
