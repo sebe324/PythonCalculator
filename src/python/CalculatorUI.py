@@ -18,7 +18,7 @@ layout=[
     [sg.Button("7",**bStyle1),sg.Button("8",**bStyle1),sg.Button("9",**bStyle1),sg.Button("DEL",**bStyle2),sg.Button("AC",**bStyle2)],
     [sg.Button("4",**bStyle1),sg.Button("5",**bStyle1),sg.Button("6",**bStyle1),sg.Button("x",**bStyle1),sg.Button("/",**bStyle1)],
     [sg.Button("1",**bStyle1),sg.Button("2",**bStyle1),sg.Button("3",**bStyle1),sg.Button("+",**bStyle1),sg.Button("-",**bStyle1),],
-    [sg.Button("0",**bStyle1),sg.Button(".",**bStyle1),sg.Button("^",**bStyle1),sg.Button("=",**bStyle1),sg.Button("OFF",**bStyle3),],
+    [sg.Button("0",**bStyle1),sg.Button(".",**bStyle1),sg.Button("=",**bStyle1),sg.Button("^",**bStyle1),sg.Button("OFF",**bStyle3),],
     [sg.Button("(",**bStyle4),sg.Button(")",**bStyle4)]
     ]
 
