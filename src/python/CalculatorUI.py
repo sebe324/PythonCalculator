@@ -1,9 +1,6 @@
 import MyMathLibrary as mml
 import PySimpleGUI as sg
-import sys 
-test = mml.convertToRPN("-3+2")
-
-#print(mml.calculateRPN(test))
+import sys
 
 sg.set_options(font=('Franklin Gothic Book', 24))
 bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
@@ -22,34 +19,26 @@ layout=[
     [sg.Button("(",**bStyle4),sg.Button(")",**bStyle4),sg.Button("√", key="root",**bStyle4)]
     ]
 
+def exit_confirmation(main_window):
+    exit_window = sg.Window("Do you want to exit?", [[sg.Button("Stay", **bStyle2), sg.Button("Exit",**bStyle3)]], disable_close=True)
+    while True:
+        exit_event, exit_values = exit_window.read()
+        if exit_event == "Exit":
+            main_window.close()
+            sys.exit()
+        elif exit_event == 'Stay':
+            break
+    exit_window.close()
 
-window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0))
+window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), disable_close=True)
 equation=""
 operators = ("+","-","x","/","^")
 while True:
     event, values = window.read()
-    if event == "OFF" or event ==sg.WIN_CLOSED:
-        break
-    elif event == "0":
-        equation+="0"
-    elif event == "1":
-        equation+="1"
-    elif event == "2":
-        equation+="2"
-    elif event == "3":
-        equation+="3"
-    elif event == "4":
-        equation+="4"
-    elif event == "5":
-        equation+="5"
-    elif event == "6":
-        equation+="6"
-    elif event == "7":
-        equation+="7"
-    elif event == "8":
-        equation+="8"
-    elif event == "9":
-        equation+="9"
+    if event == "OFF":
+        exit_confirmation(window)
+    elif event.isdigit():
+        equation += event
     elif event == "AC":
         equation=""
     elif event == "DEL":
