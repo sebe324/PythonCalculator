@@ -9,7 +9,7 @@ sg.set_options(font=('Franklin Gothic Book', 24))
 bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
 bStyle2 = {'size':(5,2),'button_color':("white","#0984e3")}
 bStyle3 = {'size':(5,2),'button_color':("white","tomato")}
-bStyle4 = {'size':(14,2),'button_color':("#00b894","#dfe6e9")}
+bStyle4 = {'size':(9,2),'button_color':("#00b894","#dfe6e9")}
 font = ("Arial", 13)
 layout=[
     [sg.Text('Calculator', size=(30,1), justification = 'right',background_color='#909090')],
@@ -19,7 +19,7 @@ layout=[
     [sg.Button("4",**bStyle1),sg.Button("5",**bStyle1),sg.Button("6",**bStyle1),sg.Button("x",**bStyle1),sg.Button("/",**bStyle1)],
     [sg.Button("1",**bStyle1),sg.Button("2",**bStyle1),sg.Button("3",**bStyle1),sg.Button("+",**bStyle1),sg.Button("-",**bStyle1),],
     [sg.Button("0",**bStyle1),sg.Button(".",**bStyle1),sg.Button("=",**bStyle1),sg.Button("^",**bStyle1),sg.Button("OFF",**bStyle3),],
-    [sg.Button("(",**bStyle4),sg.Button(")",**bStyle4)]
+    [sg.Button("(",**bStyle4),sg.Button(")",**bStyle4),sg.Button("√", key="root",**bStyle4)]
     ]
 
 
@@ -73,6 +73,8 @@ while True:
         equation+="("
     elif event == ")":
         equation+=")"
+    elif event == "root":
+        equation+="r"
     elif event == "=":
         if(equation==""): equation="0"
         convertedEquation=mml.convertToRPN(equation)

@@ -31,6 +31,9 @@ double rpn::calculate(double a, double b, char op) {
 	case '^':
 		return pow(b, a);
 		break;
+	case 'r':
+		if (b == 0.0) return 1.0;
+		return pow(a, 1.0 / b);
 	}
 }
 
