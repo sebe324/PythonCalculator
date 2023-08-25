@@ -24,6 +24,7 @@ def exit_confirmation(main_window):
     while True:
         exit_event, exit_values = exit_window.read()
         if exit_event == "Exit":
+            exit_window.close()
             main_window.close()
             sys.exit()
         elif exit_event == 'Stay':
@@ -46,22 +47,12 @@ while True:
         if(len(x)>0):
             x.pop()
         equation="".join(x)
-    elif event =="+":
-        equation+="+"
-    elif event =="-":
-        equation+="-"
     elif event =="x":
         equation+="*"
-    elif event =="/":
-        equation+="/"
-    elif event == "^":
-        equation+="^"
-    elif event == ".":
-        equation+="."
-    elif event == "(":
-        equation+="("
-    elif event == ")":
-        equation+=")"
+    elif event in operators:
+        equation += event
+    elif event in ["(", ")", "."]:
+        equation += event
     elif event == "root":
         equation+="r"
     elif event == "=":
@@ -70,7 +61,6 @@ while True:
         equation=str(mml.calculateRPN(convertedEquation))
     window['output'].update(equation)
     if(event not in operators):
-        print(event not in operators)
         tmp=mml.convertToRPN(equation)
         x=str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
