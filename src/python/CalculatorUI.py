@@ -1,6 +1,8 @@
 import MyMathLibrary as mml
 import PySimpleGUI as sg
 import sys
+from playsound import playsound
+import threading
 
 sg.set_options(font=('Franklin Gothic Book', 24))
 bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
@@ -24,17 +26,25 @@ def exit_confirmation(main_window):
     while True:
         exit_event, exit_values = exit_window.read()
         if exit_event == "Exit":
+            exit_window.close()
             main_window.close()
             sys.exit()
         elif exit_event == 'Stay':
             break
     exit_window.close()
 
+def click_sound():
+    t = threading.Thread(target=playsound, args=("./click.mp3",))
+    t.start()
+
 window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), disable_close=True)
 equation=""
 operators = ("+","-","x","/","^")
 while True:
     event, values = window.read()
+    if(len(event.strip()) != 0):
+        click_sound()
+
     if event == "OFF":
         exit_confirmation(window)
     elif event.isdigit():
@@ -46,22 +56,12 @@ while True:
         if(len(x)>0):
             x.pop()
         equation="".join(x)
-    elif event =="+":
-        equation+="+"
-    elif event =="-":
-        equation+="-"
     elif event =="x":
         equation+="*"
-    elif event =="/":
-        equation+="/"
-    elif event == "^":
-        equation+="^"
-    elif event == ".":
-        equation+="."
-    elif event == "(":
-        equation+="("
-    elif event == ")":
-        equation+=")"
+    elif event in operators:
+        equation += event
+    elif event in ["(", ")", "."]:
+        equation += event
     elif event == "root":
         equation+="r"
     elif event == "=":
@@ -70,7 +70,6 @@ while True:
         equation=str(mml.calculateRPN(convertedEquation))
     window['output'].update(equation)
     if(event not in operators):
-        print(event not in operators)
         tmp=mml.convertToRPN(equation)
         x=str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
