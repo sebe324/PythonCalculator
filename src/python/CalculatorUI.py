@@ -1,6 +1,8 @@
 import MyMathLibrary as mml
 import PySimpleGUI as sg
 import sys
+from playsound import playsound
+import threading
 
 sg.set_options(font=('Franklin Gothic Book', 24))
 bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
@@ -31,11 +33,18 @@ def exit_confirmation(main_window):
             break
     exit_window.close()
 
+def click_sound():
+    t = threading.Thread(target=playsound, args=("./click.mp3",))
+    t.start()
+
 window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), disable_close=True)
 equation=""
 operators = ("+","-","x","/","^")
 while True:
     event, values = window.read()
+    if(len(event.strip()) != 0):
+        click_sound()
+
     if event == "OFF":
         exit_confirmation(window)
     elif event.isdigit():
