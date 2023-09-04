@@ -21,6 +21,8 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Install python
 - Install PySimpleGUI
   ```pip install PySimpleGUI```
+- Install playsound
+```pip install playsound```
 - Make sure that the .pyd file and the .py file are in the same folder
 - Just do this line in the same directory as the files.
   ```python CalculatorUI.py```
@@ -41,4 +43,4 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 - Fix all the bugs [ ]
 - Add documentation [ ]
 - Light and dark mode [ ]
-- Window confirming if the user wants to exit the calculator [ ]
+- Window confirming if the user wants to exit the calculator [x]
