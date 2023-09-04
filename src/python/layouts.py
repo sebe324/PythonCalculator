@@ -4,10 +4,13 @@ b_style1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
 b_style2 = {'size':(5,2),'button_color':("white","#0984e3")}
 b_style3 = {'size':(5,2),'button_color':("white","tomato")}
 b_style4 = {'size':(9,2),'button_color':("#00b894","#dfe6e9")}
+b_style_settings = {'button_color':('#303030','#404040')}
 font = ("Arial", 13)
 
+gear_icon_path = './gear.png'
+
 layout_calculator=[
-    [sg.Button('s'),sg.Text('Calculator', size=(30,1), justification = 'right',background_color='#909090')],
+    [sg.Button(image_filename=gear_icon_path,**b_style_settings),sg.Text('Calculator', size=(30,1), justification = 'right',background_color='#909090')],
     [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
     [sg.Text('0.00000', key='current_output', size=(63,1), justification = 'right', background_color='#909090', text_color='black',pad=(5,0),font=font)],
     [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2)],
