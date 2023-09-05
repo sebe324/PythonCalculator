@@ -1,52 +1,25 @@
 import MyMathLibrary as mml
 import PySimpleGUI as sg
 import sys
-from playsound import playsound
-import threading
+from layouts import *
+from misc import *
 
-sg.set_options(font=('Franklin Gothic Book', 24))
-bStyle1 = {'size':(5,2),'button_color':("#00b894","#dfe6e9")}
-bStyle2 = {'size':(5,2),'button_color':("white","#0984e3")}
-bStyle3 = {'size':(5,2),'button_color':("white","tomato")}
-bStyle4 = {'size':(9,2),'button_color':("#00b894","#dfe6e9")}
-font = ("Arial", 13)
-layout=[
-    [sg.Text('Calculator', size=(30,1), justification = 'right',background_color='#909090')],
-    [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
-    [sg.Text('0.00000', key='current_output', size=(63,1), justification = 'right', background_color='#909090', text_color='black',pad=(5,0),font=font)],
-    [sg.Button("7",**bStyle1),sg.Button("8",**bStyle1),sg.Button("9",**bStyle1),sg.Button("DEL",**bStyle2),sg.Button("AC",**bStyle2)],
-    [sg.Button("4",**bStyle1),sg.Button("5",**bStyle1),sg.Button("6",**bStyle1),sg.Button("x",**bStyle1),sg.Button("/",**bStyle1)],
-    [sg.Button("1",**bStyle1),sg.Button("2",**bStyle1),sg.Button("3",**bStyle1),sg.Button("+",**bStyle1),sg.Button("-",**bStyle1),],
-    [sg.Button("0",**bStyle1),sg.Button(".",**bStyle1),sg.Button("=",**bStyle1),sg.Button("^",**bStyle1),sg.Button("OFF",**bStyle3),],
-    [sg.Button("(",**bStyle4),sg.Button(")",**bStyle4),sg.Button("√", key="root",**bStyle4)]
-    ]
-
-def exit_confirmation(main_window):
-    exit_window = sg.Window("Do you want to exit?", [[sg.Button("Stay", **bStyle2), sg.Button("Exit",**bStyle3)]], disable_close=True)
-    while True:
-        exit_event, exit_values = exit_window.read()
-        if exit_event == "Exit":
-            exit_window.close()
-            main_window.close()
-            sys.exit()
-        elif exit_event == 'Stay':
-            break
-    exit_window.close()
-
-def click_sound():
-    t = threading.Thread(target=playsound, args=("./click.mp3",))
-    t.start()
-
-window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), disable_close=True)
+window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), size=(600, 600), enable_close_attempted_event=True)
 equation=""
 operators = ("+","-","x","/","^")
+calculatorButtons=('0','1','2','3','4','5','6','7','8','9', 'x','root','(',')','+','-','=','/','.')
+
+isSoundOn=True
+isExitWindowOn=True
 while True:
     event, values = window.read()
-    if(len(event.strip()) != 0):
+    isExitWindowOn=values['exit_window_checkbox']
+    isSoundOn=values['sound_checkbox']
+    if(len(event.strip()) != 0 and isSoundOn):
         click_sound()
-
-    if event == "OFF":
-        exit_confirmation(window)
+    if (event == "OFF" or event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT):
+        if(isExitWindowOn): exit_confirmation(window)
+        else: window.close()
     elif event.isdigit():
         equation += event
     elif event == "AC":
@@ -64,12 +37,19 @@ while True:
         equation += event
     elif event == "root":
         equation+="r"
+    elif event == "calculatorBtn":
+        window['LayoutC'].update(visible=False)
+        window['LayoutS'].update(visible=True)
+        print("test")
+    elif event == "settingsBtn":
+        window['LayoutC'].update(visible=True)
+        window['LayoutS'].update(visible=False)
     elif event == "=":
         if(equation==""): equation="0"
         convertedEquation=mml.convertToRPN(equation)
         equation=str(mml.calculateRPN(convertedEquation))
     window['output'].update(equation)
-    if(event not in operators):
+    if(event  in calculatorButtons):
         tmp=mml.convertToRPN(equation)
         x=str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
