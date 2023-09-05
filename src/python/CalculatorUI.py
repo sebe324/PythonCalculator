@@ -35,6 +35,9 @@ while True:
         window['LayoutC'].update(visible=False)
         window['LayoutS'].update(visible=True)
         print("test")
+    elif event == "settingsBtn":
+        window['LayoutC'].update(visible=True)
+        window['LayoutS'].update(visible=False)
     elif event == "=":
         if(equation==""): equation="0"
         convertedEquation=mml.convertToRPN(equation)
