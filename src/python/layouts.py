@@ -10,7 +10,7 @@ font = ("Arial", 13)
 gear_icon_path = './gear.png'
 
 layout_calculator=[
-    [sg.Button(image_filename=gear_icon_path,**b_style_settings),sg.Text('Calculator', size=(30,1), justification = 'right',background_color='#909090')],
+    [sg.Button(image_filename=gear_icon_path,key='calculatorBtn',**b_style_settings), sg.Text('Calculator', size=(30,1),background_color='#909090')],
     [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
     [sg.Text('0.00000', key='current_output', size=(63,1), justification = 'right', background_color='#909090', text_color='black',pad=(5,0),font=font)],
     [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2)],
@@ -21,7 +21,11 @@ layout_calculator=[
     ]
 
 layout_settings=[
-    [sg.Checkbox("Dark mode",background_color='#909090')]
+    [sg.Button(image_filename=gear_icon_path,key='settingsBtn',**b_style_settings)],
+    [sg.Checkbox("Dark mode", key = 'dark_mode_checkbox',background_color='#909090')],
+    [sg.Checkbox("Sound", key='sound_checkbox',background_color="#909090")],
+    [sg.Checkbox("Science Mode", key='science_mode_checkbox', background_color="#909090")],
+    [sg.Checkbox("Exit Window", key='exit_window_checkbox', background_color="#909090")]
 ]
 
 currentLayout=0
