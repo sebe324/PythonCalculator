@@ -41,6 +41,8 @@ layout_science_mode=[
 ]
 currentLayout=0
 
-layout=[[sg.Column(layout_calculator,visible=True, key='LayoutC',background_color='#909090'), sg.Column(layout_settings,visible=False, key="LayoutS",background_color='#909090')]]
+layout=[[sg.Column(layout_calculator,visible=True, key='LayoutC',background_color='#909090'),
+ sg.Column(layout_settings,visible=False, key="LayoutS",background_color='#909090'),
+ sg.Column(layout_science_mode,visible=False, key="LayoutSM",background_color='#909090')]]
 
 
