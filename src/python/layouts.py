@@ -37,7 +37,7 @@ layout_science_mode=[
     [sg.Button("1",**b_style1),sg.Button("2",**b_style1),sg.Button("3",**b_style1),sg.Button("+",**b_style1),sg.Button("-",**b_style1),],
     [sg.Button("0",**b_style1),sg.Button(".",**b_style1),sg.Button("=",**b_style1),sg.Button("^",**b_style1),sg.Button("OFF",**b_style3),],
     [sg.Button("(",**b_style4),sg.Button(")",**b_style4),sg.Button("√", key="root",**b_style4)],
-    [sg.Button("sin(x)", **b_style1),sg.Button("cos(x)", **b_style1),sg.Button("tg(x)", **b_style1),sg.Button("ctg(x)", **b_style1), sg.Button("|x|")]
+    [sg.Button("sin(x)", **b_style1),sg.Button("cos(x)", **b_style1),sg.Button("tg(x)", **b_style1),sg.Button("ctg(x)", **b_style1), sg.Button("|x|", **b_style1)]
 ]
 currentLayout=0
 
