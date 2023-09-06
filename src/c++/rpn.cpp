@@ -5,14 +5,16 @@
 #include <iostream>
 #include <math.h>
 
-bool rpn::isNumber(const char input) {
-	return (input >= 48 && input <= 57) || input == '.';
+bool rpn::isNumber(const char value) {
+	return (value >= 48 && value <= 57) || value == '.';
 }
 
 bool rpn::isOperator(const char value) {
 	return std::find(operators.begin(), operators.end(), value) != operators.end();
 }
-
+bool rpn::isLetter(const char value) {
+	return (value >= 97 && value <= 122);
+}
 double rpn::calculate(double a, double b, char op) {
 	switch (op) {
 	case '+':
@@ -35,6 +37,14 @@ double rpn::calculate(double a, double b, char op) {
 		if (b == 0.0) return 1.0;
 		return pow(a, 1.0 / b);
 	}
+}
+
+double calculateTrig(double a, const std::string& funcName) {
+	if (funcName == "sin") return 0;
+	else if (funcName == "cos") return 0;
+	else if (funcName == "tg") return 0;
+	else if (funcName == "ctg") return 0;
+
 }
 
 std::string rpn::convertToRPN(const std::string& str)
@@ -116,7 +126,20 @@ std::string rpn::convertToRPN(const std::string& str)
 			result.append(tmp);
 			result.append(" ");
 		}
+		// if the symbol is a function add it to the stack
+		else if (isLetter(input[i])) {
+			std::string mathFunction(1,input[i]);
+			for (unsigned j = i + 1; j < inputSize; j++) {
+				if (isLetter(input[j])) {
+					mathFunction += input[j];
+					i++;
+					continue;
+				}
+				else if (input[j] == '(') {
 
+				}
+			}
+		}
 		//If the symbol is an operator
 		else if (isOperator(input[i])) {
 

@@ -6,6 +6,7 @@
 namespace rpn {
 	bool isNumber(const char value);
 	bool isOperator(const char value);
+	bool isLetter(const char value);
 
 	double calculate(double a, double d, char op);
 
