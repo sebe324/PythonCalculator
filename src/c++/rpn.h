@@ -9,7 +9,7 @@ namespace rpn {
 	bool isLetter(const char value);
 
 	double calculate(double a, double d, char op);
-
+	double calculateFunc(double a, const std::string& funcName);
 	std::string convertToRPN(const std::string& str);
 
 	double calculateRPN(const std::string& str);

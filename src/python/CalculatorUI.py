@@ -4,7 +4,7 @@ import sys
 from layouts import *
 from misc import *
 
-window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), size=(600, 800), enable_close_attempted_event=True)
+window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), size=(600, 600), enable_close_attempted_event=True)
 equation=""
 operators = ("+","-","x","/","^")
 calculatorButtons=('0','1','2','3','4','5','6','7','8','9', 'x','root','(',')','+','-','=','/','.')

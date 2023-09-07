@@ -39,12 +39,12 @@ double rpn::calculate(double a, double b, char op) {
 	}
 }
 
-double calculateTrig(double a, const std::string& funcName) {
-	if (funcName == "sin") return 0;
-	else if (funcName == "cos") return 0;
-	else if (funcName == "tg") return 0;
-	else if (funcName == "ctg") return 0;
-
+double calculateFunc(double a, const std::string& funcName) {
+	if (funcName == "sin") return sin(a);
+	else if (funcName == "cos") return cos(a);
+	else if (funcName == "tg") return sin(a) / cos(a);
+	else if (funcName == "ctg") return cos(a) / sin(a);
+	else if (funcName == "abs") return abs(a);
 }
 
 std::string rpn::convertToRPN(const std::string& str)
@@ -136,7 +136,19 @@ std::string rpn::convertToRPN(const std::string& str)
 					continue;
 				}
 				else if (input[j] == '(') {
-
+					if (isNumber(input[i])) {
+			std::string tmp = "";
+			tmp.append(&input[i], 1);
+			for (unsigned j = i + 1; j < inputSize; j++) {
+				if (isNumber(input[j])) {
+					tmp.append(&input[j], 1);
+					i++;
+				}
+				else break;
+			}
+			result.append(tmp);
+			result.append(" ");
+		}
 				}
 			}
 		}
@@ -225,7 +237,24 @@ double rpn::calculateRPN(const std::string& str) {
 
 			s.push(std::to_string(calculate(a, b, input[i])));
 		}
+		else if (isLetter(input[i])) {
+			std::string funcName(input[i],1);
+			for (unsigned j = i+1; j < input.length(); j++) {
+				if (isLetter(input[j])) {
+					i++;
+					funcName += input[j];
+				}
+				else break;
+			}
+
+			double a = std::stod(s.top());
+			s.pop();
+
+			s.push(std::to_string(calculateFunc(a, funcName)));
+			
+		}
 		else if (input[i] != ' ') return 0.0;
+
 	}
 	//save the result
 	result = std::stod(s.top());
