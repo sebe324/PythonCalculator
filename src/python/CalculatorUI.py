@@ -38,7 +38,7 @@ while True:
     elif event in ["(", ")", "."]:
         equation += event
     elif event == "root":
-        equation+="r"
+        equation+="@"
     elif event == "calculatorBtn":
         window['LayoutC'].update(visible=False)
         window['LayoutS'].update(visible=True)
