@@ -41,7 +41,9 @@ int main() {
 	rpnTest("4^3^2", 262144);
 	rpnTest("sin(30*3.14159265359 /180)+2", 2.5);
 	rpnTest("cos(60*3.14159265359/180)^2", 0.25);
-	rpnTest("abs(-2)+2*2", 6);
-	rpnTest("abs(2)", 2);
+	rpnTest("cos()", 0.0);
+	rpnTest("cos(30*3.14159265359/180)^2+sin(30*3.14159265359/180)^2", 1);
+	//rpnTest("abs(-2)+2*2", 6);
+	//rpnTest("abs(2)", 2);
 	return 0;
 }

@@ -12,13 +12,13 @@ gear_icon_path = './gear.png'
 layout_calculator=[
     [sg.Button(image_filename=gear_icon_path,key='calculatorBtn',**b_style_settings), sg.Text('Calculator', size=(30,1),background_color='#909090')],
     [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
-    [sg.Text('0.00000', key='current_output', size=(63,1), justification = 'right', background_color='#909090', text_color='black',pad=(5,0),font=font)],
-    [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2)],
-    [sg.Button("4",**b_style1),sg.Button("5",**b_style1),sg.Button("6",**b_style1),sg.Button("x",**b_style1),sg.Button("/",**b_style1)],
-    [sg.Button("1",**b_style1),sg.Button("2",**b_style1),sg.Button("3",**b_style1),sg.Button("+",**b_style1),sg.Button("-",**b_style1),],
-    [sg.Button("0",**b_style1),sg.Button(".",**b_style1),sg.Button("=",**b_style1),sg.Button("^",**b_style1),sg.Button("OFF",**b_style3),],
-    [sg.Button("(",**b_style4),sg.Button(")",**b_style4),sg.Button("√", key="root",**b_style4)]
-    ]
+    [sg.Button("<-"), sg.Button("->"),sg.Text('0.00000', key='current_output', size=(63,1), background_color='#909090', text_color='black',pad=(5,0),font=font)],
+    [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2),sg.Button("sin(x)", visible = False, **b_style1)],
+    [sg.Button("4",**b_style1),sg.Button("5",**b_style1),sg.Button("6",**b_style1),sg.Button("x",**b_style1),sg.Button("/",**b_style1),sg.Button("cos(x)", visible = False, **b_style1)],
+    [sg.Button("1",**b_style1),sg.Button("2",**b_style1),sg.Button("3",**b_style1),sg.Button("+",**b_style1),sg.Button("-",**b_style1),sg.Button("tg(x)", visible = False, **b_style1)],
+    [sg.Button("0",**b_style1),sg.Button(".",**b_style1),sg.Button("=",**b_style1),sg.Button("^",**b_style1),sg.Button("OFF",**b_style3),sg.Button("ctg(x)", visible = False, **b_style1)],
+    [sg.Button("(",**b_style4),sg.Button(")",**b_style4),sg.Button("√", key="root",**b_style4),sg.Button("abs(x)", visible = False, **b_style1)]
+]
 
 layout_settings=[
     [sg.Button(image_filename=gear_icon_path,key='settingsBtn',**b_style_settings)],
@@ -28,21 +28,14 @@ layout_settings=[
     [sg.Checkbox("Exit Window", default=True, key='exit_window_checkbox', background_color="#909090")]
 ]
 
-layout_science_mode=[
-     [sg.Button(image_filename=gear_icon_path,key='calculatorBtn',**b_style_settings), sg.Text('Calculator', size=(30,1),background_color='#909090')],
-     [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
-    [sg.Text('0.00000', key='current_output', size=(63,1), justification = 'right', background_color='#909090', text_color='black',pad=(5,0),font=font)],
-    [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2)],
-    [sg.Button("4",**b_style1),sg.Button("5",**b_style1),sg.Button("6",**b_style1),sg.Button("x",**b_style1),sg.Button("/",**b_style1)],
-    [sg.Button("1",**b_style1),sg.Button("2",**b_style1),sg.Button("3",**b_style1),sg.Button("+",**b_style1),sg.Button("-",**b_style1),],
-    [sg.Button("0",**b_style1),sg.Button(".",**b_style1),sg.Button("=",**b_style1),sg.Button("^",**b_style1),sg.Button("OFF",**b_style3),],
-    [sg.Button("(",**b_style4),sg.Button(")",**b_style4),sg.Button("√", key="root",**b_style4)],
-    [sg.Button("sin(x)", **b_style1),sg.Button("cos(x)", **b_style1),sg.Button("tg(x)", **b_style1),sg.Button("ctg(x)", **b_style1), sg.Button("|x|", **b_style1)]
-]
 currentLayout=0
 
 layout=[[sg.Column(layout_calculator,visible=True, key='LayoutC',background_color='#909090'),
- sg.Column(layout_settings,visible=False, key="LayoutS",background_color='#909090'),
- sg.Column(layout_science_mode,visible=False, key="LayoutSM",background_color='#909090')]]
+ sg.Column(layout_settings,visible=False, key="LayoutS",background_color='#909090')]]
 
-
+def scienceModeOn(b, window):
+    window['sin(x)'].update(visible=b)
+    window['cos(x)'].update(visible=b)
+    window['tg(x)'].update(visible=b)
+    window['ctg(x)'].update(visible=b)
+    window['abs(x)'].update(visible=b)

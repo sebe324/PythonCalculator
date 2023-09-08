@@ -112,6 +112,11 @@ std::string rpn::convertToRPN(const std::string& str)
 			inputSize++;
 			i++;
 		}
+
+		//error pusta funkcja
+		else if (input.size() > 3 && isLetter(input[i]) && input[i + 1] == '(' && input[i + 2] == ')') {
+			return "";
+		}
 	}
 
 	std::cout << "input: " << input << std::endl;
