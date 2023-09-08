@@ -108,7 +108,7 @@ std::string rpn::convertToRPN(const std::string& str)
 			}
 		}
 		else if (input.size() > 2 && input[i] == '(' && input[i + 1] == '-') {
-			input.insert(i + 1, "0");
+			input.insert(i+1, "0");
 			inputSize++;
 			i++;
 		}
@@ -140,7 +140,7 @@ std::string rpn::convertToRPN(const std::string& str)
 		// if the symbol is a function add it to the stack
 		else if (isLetter(input[i])) {
 			std::cout << "WYKRYTO LITERE" << std::endl;
-			std::string mathFunction(1, input[i]);
+			std::string mathFunction(1,input[i]);
 			for (unsigned j = i + 1; j < inputSize; j++) {
 				if (isLetter(input[j])) {
 					mathFunction += input[j];
@@ -162,7 +162,7 @@ std::string rpn::convertToRPN(const std::string& str)
 
 			while (s.size() > 0 && isOperator(s.top()[0]) &&
 				((s.top()[0] != '^' && operatorOrder.at(std::string(&input[i], 1)) <= operatorOrder.at(s.top()))
-					|| (s.top()[0] == '^' && operatorOrder.at(std::string(&input[i], 1)) < operatorOrder.at(s.top())))) {
+				|| (s.top()[0]=='^' && operatorOrder.at(std::string(&input[i], 1)) < operatorOrder.at(s.top())))) {
 				//pop o2 off the stack and add it to the output queue and do again 1)
 				result.append(s.top());
 				result.append(" ");
@@ -186,8 +186,8 @@ std::string rpn::convertToRPN(const std::string& str)
 			while (s.top() != "(") {
 				if (isOperator(s.top()[0])) {
 					result.append(s.top());
-					result.append(" ");
-					s.pop();
+						result.append(" ");
+						s.pop();
 				}
 			}
 			if (s.top() == "(") s.pop();
@@ -197,7 +197,7 @@ std::string rpn::convertToRPN(const std::string& str)
 				result.append(" ");
 				s.pop();
 			}
-		}
+			}
 	}
 	//Add all of the remaining operators to the result.
 	while (!s.empty()) {
@@ -245,10 +245,10 @@ double rpn::calculateRPN(const std::string& str) {
 			s.push(std::to_string(calculate(a, b, input[i])));
 		}
 		else if (isLetter(input[i])) {
-			std::string funcName(1, input[i]);
+			std::string funcName(1,input[i]);
 			std::cout << "WYKRYTO FUNKCJE\n";
 
-			for (unsigned j = i + 1; j < input.length(); j++) {
+			for (unsigned j = i+1; j < input.length(); j++) {
 				if (isLetter(input[j])) {
 					i++;
 					funcName += input[j];
@@ -260,7 +260,7 @@ double rpn::calculateRPN(const std::string& str) {
 			s.pop();
 
 			s.push(std::to_string(calculateFunc(a, funcName)));
-
+			
 		}
 		else if (input[i] != ' ') return 0.0;
 

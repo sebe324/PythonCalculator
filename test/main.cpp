@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 
-#include "../src/c++/rpn.h"
+#include "rpn.h"
 
 using namespace rpn;
 
@@ -37,5 +37,13 @@ int main() {
 	rpnTest("(7 + 3) * (5 - 2) ^ 2", 90.0);
 	rpnTest("4 / (3 - 1) ^ (2 * 3) ", 0.0625);
 	rpnTest("( ( 5 - 2 ) ^ ( 3 + 1 ) / ( 2 + 1 ) + 12 ) * 21.0", 819.0);
+	rpnTest("sin(0.523599)", 0.5);
+	rpnTest("4^3^2", 262144);
+	rpnTest("sin(30*3.14159265359 /180)+2", 2.5);
+	rpnTest("cos(60*3.14159265359/180)^2", 0.25);
+	rpnTest("cos()", 0.0);
+	rpnTest("cos(30*3.14159265359/180)^2+sin(30*3.14159265359/180)^2", 1);
+	//rpnTest("abs(-2)+2*2", 6);
+	//rpnTest("abs(2)", 2);
 	return 0;
 }

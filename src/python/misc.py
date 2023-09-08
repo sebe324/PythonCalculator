@@ -18,3 +18,12 @@ def exit_confirmation(main_window):
 def click_sound():
     t = threading.Thread(target=playsound, args=("./click.mp3",))
     t.start()
+def insert_str(string, str_to_insert, index):
+    return string[:index] + str_to_insert + string[index:]
+def remove(s, indx):
+        return ''.join(x for x in s if s.index(x) != indx)
+def move_center(window):
+    screen_width, screen_height = window.get_screen_dimensions()
+    win_width, win_height = window.size
+    x, y = (screen_width - win_width)//2, (screen_height - win_height)//2
+    window.move(x, y)
