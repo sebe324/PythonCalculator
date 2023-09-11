@@ -1,98 +1,119 @@
+# Import necessary libraries
 import MyMathLibrary as mml
 import PySimpleGUI as sg
 import sys
 from layouts import *
 from misc import *
 
-window=sg.Window("Calculator",layout,icon="icon.ico",background_color='#909090', margins=(0,0), size=(700, 650), enable_close_attempted_event=True)
-#window.read()
-#move_center(window)
-equation=""
-operators = ("+","-","x","/","^")
-calculatorButtons=('0','1','2','3','4','5','6','7','8','9', 'x','root','(',')','+','-','=','/','.','sin(x)','cos(x),tg(x),ctg(x),abs(x)')
+# Create the main window for the calculator
+window = sg.Window("Calculator", layout, icon="icon.ico", background_color='#909090', margins=(0, 0), size=(700, 650), enable_close_attempted_event=True)
 
-isSoundOn=True
-isExitWindowOn=True
+# Initialize variables
+equation = ""
+operators = ("+", "-", "x", "/", "^")
+calculatorButtons = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'root', '(', ')', '+', '-', '=', '/', '.', 'sin(x)', 'cos(x)', 'tg(x)', 'ctg(x)', 'abs(x)')
+
+isSoundOn = True
+isExitWindowOn = True
 isScienceMode = False
 
 index = len(equation)
+
+# Main event loop
 while True:
     event, values = window.read()
-    isExitWindowOn=values['exit_window_checkbox']
-    isSoundOn=values['sound_checkbox']
-    isScienceMode=values['science_mode_checkbox']
-    if(len(event.strip()) != 0 and isSoundOn):
+
+    # Update settings based on user input
+    isExitWindowOn = values['exit_window_checkbox']
+    isSoundOn = values['sound_checkbox']
+    isScienceMode = values['science_mode_checkbox']
+
+    # Play a click sound if enabled and an event occurred
+    if (len(event.strip()) != 0 and isSoundOn):
         click_sound()
+
+    # Handle window close events
     if (event == "OFF" or event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT):
-        if(isExitWindowOn): exit_confirmation(window)
-        else: window.close()
+        if (isExitWindowOn):
+            exit_confirmation(window)
+        else:
+            window.close()
     elif event == "<-":
-        if(index>0): index-=1
+        if (index > 0):
+            index -= 1
     elif event == "->":
-        if(index<len(equation)): index+=1
+        if (index < len(equation)):
+            index += 1
     elif event.isdigit():
-        equation = insert_str(equation,event,index)
-        index+=1
+        equation = insert_str(equation, event, index)
+        index += 1
     elif event == "AC":
-        equation=""
-        index=0
+        equation = ""
+        index = 0
     elif event == "DEL":
-        x=list(equation)
-        if(len(x)>0):
-            print(index-1)
-            del x[index-1]
-            if(index==len(equation)):
-                index-=1
-        equation="".join(x)
+        x = list(equation)
+        if (len(x) > 0):
+            del x[index - 1]
+            if (index == len(equation)):
+                index -= 1
+        equation = "".join(x)
+    # Handle trigonometric and other special functions
     elif event == "sin(x)":
-        equation= insert_str(equation,"sin()",index)
-        index+=5
+        equation = insert_str(equation, "sin()", index)
+        index += 5
     elif event == "cos(x)":
-        equation= insert_str(equation,"cos()",index)
-        index+=5
+        equation = insert_str(equation, "cos()", index)
+        index += 5
     elif event == "tg(x)":
-        equation= insert_str(equation,"tg()",index)
-        index+=5
+        equation = insert_str(equation, "tg()", index)
+        index += 5
     elif event == "ctg(x)":
-        equation= insert_str(equation,"ctg()",index)
-        index+=5
+        equation = insert_str(equation, "ctg()", index)
+        index += 5
     elif event == "abs(x)":
-        equation= insert_str(equation,"abs()",index)
-        index+=5
-    elif event =="x":
-        equation = insert_str(equation,"*",index)
-        index+=1
+        equation = insert_str(equation, "abs()", index)
+        index += 5
+    elif event == "x":
+        equation = insert_str(equation, "*", index)
+        index += 1
+    # Handle operators and special characters
     elif event in operators:
-        equation = insert_str(equation,event,index)
-        index+=1
+        equation = insert_str(equation, event, index)
+        index += 1
     elif event in ["(", ")", "."]:
-        equation = insert_str(equation,event,index)
-        index+=1
+        equation = insert_str(equation, event, index)
+        index += 1
     elif event == "root":
-        equation = insert_str(equation,"@",index)
-        index+=1
+        equation = insert_str(equation, "@", index)
+        index += 1
+    # Handle mode switches
     elif event == "calculatorBtn":
         window['LayoutC'].update(visible=False)
         window['LayoutS'].update(visible=True)
     elif event == "settingsBtn":
         window['LayoutS'].update(visible=False)
-        if(isScienceMode):
+        if (isScienceMode):
             scienceModeOn(True, window)
-            window['LayoutC'].update(visible = True)
+            window['LayoutC'].update(visible=True)
         else:
             scienceModeOn(False, window)
-            window['LayoutC'].update(visible = True)
+            window['LayoutC'].update(visible=True)
+    # Handle calculation
     elif event == "=":
-        if(equation==""): 
-            equation="0"
-            index=1
-        convertedEquation=mml.convertToRPN(equation)
-        equation=str(mml.calculateRPN(convertedEquation))
-        index=len(equation)
+        if (equation == ""):
+            equation = "0"
+            index = 1
+        convertedEquation = mml.convertToRPN(equation)
+        equation = str(mml.calculateRPN(convertedEquation))
+        index = len(equation)
+
+    # Update the displayed equation and result
     window['output'].update(equation)
-    if(event  in calculatorButtons):
-        tmp=mml.convertToRPN(equation)
-        x=str(mml.calculateRPN(tmp))
+    if (event in calculatorButtons):
+        tmp = mml.convertToRPN(equation)
+        x = str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
+
+# Close the window and exit the application
 window.close()
 sys.exit()
