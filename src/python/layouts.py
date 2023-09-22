@@ -30,7 +30,7 @@ layout_settings=[
     [sg.Button(image_filename=gear_icon_path,key='settingsBtn',**b_style_settings)],
     [sg.Checkbox("Dark mode (not added yet)", enable_events=False, key = 'dark_mode_checkbox',background_color='#909090')],
     [sg.Checkbox("Sound", default=True, key='sound_checkbox', background_color="#909090")],
-    [sg.Checkbox("Science Mode (not added yet)", enable_events=False, key='science_mode_checkbox', background_color="#909090")],
+    [sg.Checkbox("Science Mode", enable_events=False, key='science_mode_checkbox', background_color="#909090")],
     [sg.Checkbox("Exit Window", default=True, key='exit_window_checkbox', background_color="#909090")]
 ]
 
