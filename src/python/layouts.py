@@ -16,7 +16,7 @@ gear_icon_path = './gear.png'
 # Define the layout for the calculator window
 layout_calculator=[
     [sg.Button(image_filename=gear_icon_path,key='calculatorBtn',**b_style_settings), sg.Text('Calculator', size=(30,1),background_color='#909090')],
-    [sg.Text('0.00000', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
+    [sg.Text('|', key='output', size=(30,1), justification = 'right', background_color='white', text_color='black',pad=(5,0))],
     [sg.Button("<-"), sg.Button("->"),sg.Text('0.00000', key='current_output', size=(63,1), background_color='#909090', text_color='black',pad=(5,0),font=font)],
     [sg.Button("7",**b_style1),sg.Button("8",**b_style1),sg.Button("9",**b_style1),sg.Button("DEL",**b_style2),sg.Button("AC",**b_style2),sg.Button("sin(x)", visible = False, **b_style1)],
     [sg.Button("4",**b_style1),sg.Button("5",**b_style1),sg.Button("6",**b_style1),sg.Button("x",**b_style1),sg.Button("/",**b_style1),sg.Button("cos(x)", visible = False, **b_style1)],

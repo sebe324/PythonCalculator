@@ -9,15 +9,15 @@ from misc import *
 window = sg.Window("Calculator", layout, icon="icon.ico", background_color='#909090', margins=(0, 0), size=(700, 650), enable_close_attempted_event=True)
 
 # Initialize variables
-equation = ""
+equation = "|"
 operators = ("+", "-", "x", "/", "^")
-calculatorButtons = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'root', '(', ')', '+', '-', '=', '/', '.', 'sin(x)', 'cos(x)', 'tg(x)', 'ctg(x)', 'abs(x)')
+calculatorButtons = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'root', '(', ')', '+', '-', '=', '/', '.', 'sin(x)', 'cos(x)', 'tg(x)', 'ctg(x)', 'abs(x)', 'DEL', '<-','->')
 
 isSoundOn = True
 isExitWindowOn = True
 isScienceMode = False
 
-index = len(equation)
+index = 0
 
 # Main event loop
 while True:
@@ -53,8 +53,8 @@ while True:
     elif event == "DEL":
         x = list(equation)
         if (len(x) > 0):
-            del x[index - 1]
-            if (index == len(equation)):
+            if(index-1>=0):
+                del x[index - 1]
                 index -= 1
         equation = "".join(x)
     # Handle trigonometric and other special functions
@@ -66,7 +66,7 @@ while True:
         index += 5
     elif event == "tg(x)":
         equation = insert_str(equation, "tg()", index)
-        index += 5
+        index += 4
     elif event == "ctg(x)":
         equation = insert_str(equation, "ctg()", index)
         index += 5
@@ -84,7 +84,7 @@ while True:
         equation = insert_str(equation, event, index)
         index += 1
     elif event == "root":
-        equation = insert_str(equation, "@", index)
+        equation = insert_str(equation, "√", index)
         index += 1
     # Handle mode switches
     elif event == "calculatorBtn":
@@ -100,17 +100,24 @@ while True:
             window['LayoutC'].update(visible=True)
     # Handle calculation
     elif event == "=":
-        if (equation == ""):
-            equation = "0"
-            index = 1
-        convertedEquation = mml.convertToRPN(equation)
-        equation = str(mml.calculateRPN(convertedEquation))
-        index = len(equation)
-
+        if (equation == "|"):
+            equation = "|"
+            index = 0
+        else:    
+            tmp_equation = equation.replace('|','')
+            tmp_equation=equation.replace('√','@')
+            convertedEquation = mml.convertToRPN(tmp_equation)
+            equation = str(mml.calculateRPN(convertedEquation))+"|"
+            index = len(equation)
+    equation = equation.replace('|','')
+    equation = insert_str(equation, "|",index)
+    print(index)
     # Update the displayed equation and result
     window['output'].update(equation)
     if (event in calculatorButtons):
-        tmp = mml.convertToRPN(equation)
+        tmp_equation=equation.replace('|','')
+        tmp_equation=equation.replace('√','@')
+        tmp = mml.convertToRPN(tmp_equation)
         x = str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
 
