@@ -105,7 +105,7 @@ while True:
             index = 0
         else:    
             tmp_equation = equation.replace('|','')
-            tmp_equation=equation.replace('√','@')
+            tmp_equation = tmp_equation.replace('√','@')
             convertedEquation = mml.convertToRPN(tmp_equation)
             equation = str(mml.calculateRPN(convertedEquation))+"|"
             index = len(equation)
@@ -116,7 +116,7 @@ while True:
     window['output'].update(equation)
     if (event in calculatorButtons):
         tmp_equation=equation.replace('|','')
-        tmp_equation=equation.replace('√','@')
+        tmp_equation=tmp_equation.replace('√','@')
         tmp = mml.convertToRPN(tmp_equation)
         x = str(mml.calculateRPN(tmp))
         window['current_output'].update(x)
