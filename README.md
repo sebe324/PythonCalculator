@@ -34,7 +34,7 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
   - Make sure you have cmake and pybind11 installed.
   - Go to the c++ folder. In the project directory do: ```cd src/c++```
   - Sometimes CMake can have problems with finding pybind11. To fix this try this:
-    - In console ```pip show pybind```.
+    - In console ```pip show pybind11```.
     - In CMakeLists.txt change [LOCATION] to the location you get from the command.
     - If your path contains single escape characters ```\``` make sure to replace them with ```\\```
     - ```cmake .```
