@@ -30,6 +30,18 @@ The algorithm is written in C++, but the user interface is made in PySimpleGui.
 
 
 ### 2. Building the c++ code and using pybind11
+  #### CMake
+  - Make sure you have cmake and pybind11 installed.
+  - Go to the c++ folder. In the project directory do: ```cd src/c++```
+  - Sometimes CMake can have problems with finding pybind11. To fix this try this:
+    - In console ```pip show pybind```.
+    - In CMakeLists.txt change [LOCATION] to the location you get from the command.
+    - If your path contains single escape characters ```\``` make sure to replace them with ```\\```
+    - ```cmake .```
+    - ```cmake --build .```
+    - The .pyd file should be located in one of the folders created.
+    - Now you can move the .pyd file to the python src folder and build the rest.
+  #### Visual Studio
   - This process is quite complicated and I myself had a lot of problems with using pybind.
   - I'm going to leave this [guide](https://learn.microsoft.com/en-us/visualstudio/python/working-with-c-cpp-python-in-visual-studio?view=vs-2022). It does a
     much better job explaining this than I could.
