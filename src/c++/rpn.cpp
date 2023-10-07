@@ -5,6 +5,8 @@
 #include <iostream>
 #include <math.h>
 
+bool useRadians = false;
+const double PI = 3.14159265359;
 bool rpn::isNumber(const char value) {
 	return (value >= 48 && value <= 57) || value == '.';
 }
@@ -39,11 +41,15 @@ double rpn::calculate(double a, double b, char op) {
 	}
 }
 
+void rpn::setUseRadians(bool b){
+	useRadians=b;
+}
+
 double rpn::calculateFunc(double a, const std::string& funcName) {
-	if (funcName == "sin") return sin(a);
-	else if (funcName == "cos") return cos(a);
-	else if (funcName == "tg") return sin(a) / cos(a);
-	else if (funcName == "ctg") return cos(a) / sin(a);
+	if (funcName == "sin") return sin(useRadians ? a : a*PI/180);
+	else if (funcName == "cos") return cos(useRadians ? a : a*PI/180);
+	else if (funcName == "tg") return sin(useRadians ? a : a*PI/180) / cos(useRadians ? a : a*PI/180);
+	else if (funcName == "ctg") return cos(useRadians ? a : a*PI/180) / sin(useRadians ? a : a*PI/180);
 	else if (funcName == "abs") return abs(a);
 	else return 0.0;
 }

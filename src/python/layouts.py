@@ -31,7 +31,8 @@ layout_settings=[
     [sg.Checkbox("Dark mode (not added yet)", enable_events=False, key = 'dark_mode_checkbox',background_color='#909090')],
     [sg.Checkbox("Sound", default=True, key='sound_checkbox', background_color="#909090")],
     [sg.Checkbox("Science Mode", enable_events=False, key='science_mode_checkbox', background_color="#909090")],
-    [sg.Checkbox("Exit Window", default=True, key='exit_window_checkbox', background_color="#909090")]
+    [sg.Checkbox("Exit Window", default=True, key='exit_window_checkbox', background_color="#909090")],
+    [sg.Checkbox("Use radians", default=False, key='use_radians_checkbox', background_color="#909090")]
 ]
 
 # Initialize the currentLayout variable

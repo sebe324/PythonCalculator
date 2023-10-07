@@ -9,7 +9,7 @@ find_package(Python COMPONENTS Interpreter Development)
 
 set(PYBIND11_LOCATION [LOCATION])
 
-set(CMAKE_PREFIX_PATH "${PYBIND_LOCATION}/pybind11/share/cmake/pybind11")
+set(CMAKE_PREFIX_PATH ${PYBIND11_LOCATION}/pybind11/share/cmake/pybind11)
 
 find_package(pybind11 CONFIG REQUIRED)
 
