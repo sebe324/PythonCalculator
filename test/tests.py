@@ -14,19 +14,20 @@ def rpnTest(equationInfix, expectedResult):
     print("Calculation result", result)
     print("Expected result", expectedResult)
     if(result==expectedResult):
-        print("TEST PASSED")
+        print("-------","TEST PASSED","-------",sep='\n')
         tests_passed+=1
         return True
     elif(abs(result-expectedResult)<=0.001):
         print("Small Difference, probably caused by finite precision")
-        print("TEST PASSED")
+        print("-------","TEST PASSED","-------",sep='\n')
         tests_passed+=1
         return True
     else:
-        print("TEST FAILED")
+        print("-------","TEST FAILED","-------",sep='\n')
         return False
 
 pi = "3.14159265359"
+mml.setUseRadians(True)
 rpnTest("3 + 2 * 5", 13.0)
 rpnTest("2 * (5 + 2)", 14.0)
 rpnTest("(7 + 3) * (5 - 2) ^ 2", 90.0)
@@ -42,4 +43,6 @@ rpnTest("tg(45*"+pi+"/180)",1)
 rpnTest("abs(30-100)*3",210)
 rpnTest("abs(-5)*-20",-100)
 rpnTest("abs(30-100)*abs(-3)",210)
+mml.setUseRadians(False)
+rpnTest("sin(30)",0.5)
 print("FINAL RESULT",tests_passed,"/",tests_amount)

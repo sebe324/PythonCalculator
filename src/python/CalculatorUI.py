@@ -16,7 +16,7 @@ calculatorButtons = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'roo
 isSoundOn = True
 isExitWindowOn = True
 isScienceMode = False
-
+useRadians = False
 index = 0
 
 # Main event loop
@@ -27,7 +27,9 @@ while True:
     isExitWindowOn = values['exit_window_checkbox']
     isSoundOn = values['sound_checkbox']
     isScienceMode = values['science_mode_checkbox']
+    useRadians = values['use_radians_checkbox']
 
+    mml.setUseRadians(useRadians)
     # Play a click sound if enabled and an event occurred
     if (len(event.strip()) != 0 and isSoundOn):
         click_sound()
