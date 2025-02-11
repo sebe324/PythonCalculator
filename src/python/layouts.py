@@ -80,21 +80,22 @@ def apply_theme(window, theme):
         elif isinstance(element, sg.InputText):
             element.update(background_color=theme['input'][1], text_color=theme['input'][0])
 
-# Create the window
-window = sg.Window('Calculator', layout, finalize=True)
+if __name__ == "__main__":
+    # Create the window for testing
+    window = sg.Window('Calculator', layout, finalize=True)
+    
+    # Apply initial light theme
+    apply_theme(window, light_mode)
+    
+    while True:
+        event, values = window.read()
+        if event == sg.WIN_CLOSED:
+            break
+        elif event == 'dark_mode_checkbox':
+            if values['dark_mode_checkbox']:
+                apply_theme(window, dark_mode)
+            else:
+                apply_theme(window, light_mode)
+        # Handle other events...
 
-# Apply initial light theme
-apply_theme(window, light_mode)
-
-while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED:
-        break
-    elif event == 'dark_mode_checkbox':
-        if values['dark_mode_checkbox']:
-            apply_theme(window, dark_mode)
-        else:
-            apply_theme(window, light_mode)
-    # Handle other events...
-
-window.close()
+    window.close()
