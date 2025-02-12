@@ -68,13 +68,21 @@ def scienceModeOn(b, window):
     window['abs(x)'].update(visible=b)
 
 # Function to apply theme
+
 def apply_theme(window, theme):
     window['LayoutC'].Widget.config(bg=theme['background'])
     window['LayoutS'].Widget.config(bg=theme['background'])
     for key in window.AllKeysDict:
         element = window[key]
         if isinstance(element, sg.Button):
-            element.update(button_color=theme['button'])
+            if key in ['DEL', 'AC']:
+                element.update(button_color=("white", "#0984e3"))
+            elif key == 'OFF':
+                element.update(button_color=("white", "tomato"))
+            elif key in ['(', ')', 'root']:
+                element.update(button_color=("#00b894", "#dfe6e9"))
+            else:
+                element.update(button_color=theme['button'])
         elif isinstance(element, sg.Text):
             element.update(background_color=theme['background'], text_color=theme['text'])
         elif isinstance(element, sg.InputText):
